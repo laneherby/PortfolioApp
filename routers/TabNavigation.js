@@ -20,7 +20,7 @@ const tabIcons = {
   ContactIcon: ({color, size}) => <FontAwesome name="at" size={size} color={color} />
 }
 
-const TabNavigation = () => {
+const TabNavigation = ({ theme }) => {
   return (
     <Tab.Navigator>
         <Tab.Screen name="Home" component={Home} options={{tabBarIcon: tabIcons.HomeIcon}} />
