@@ -9,9 +9,11 @@ import TabNavigation from './routers/TabNavigation';
 import { 
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme,
-  Provider as PaperProvider
+  Provider as PaperProvider,
+  Appbar
 } from 'react-native-paper';
 import merge from 'deepmerge';
+import TitleBar from "./components/layouts/TitleBar";
 
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavDefaultTheme);
 const CombinedDarkTheme = merge(PaperDarkTheme, NavDarkTheme);
@@ -34,23 +36,16 @@ console.log(CombinedDarkTheme);
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [appBarTitle, setAppBarTitle] = useState("Home");
 
   return (
     <PaperProvider theme={isDarkMode ? CombinedDarkTheme : CombinedDefaultTheme}>
+      <TitleBar titleText={appBarTitle} />
       <NavigationContainer theme={isDarkMode ? CombinedDarkTheme : CombinedDefaultTheme}>
-        <TabNavigation />
+        <TabNavigation getPageName={setAppBarTitle} />
       </NavigationContainer>
     </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;

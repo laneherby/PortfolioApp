@@ -1,11 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { useTheme, Card } from 'react-native-paper';
-import { color } from 'react-native-reanimated';
+import { useTheme } from 'react-native-paper';
 
 const Home = () => {
   const { colors } = useTheme();
-  //console.log(colors);
 
   const styles = StyleSheet.create({
     container: {
