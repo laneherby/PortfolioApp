@@ -22,17 +22,15 @@ CombinedDarkTheme.colors = {
   ...CombinedDarkTheme.colors,
   background: "#212121",
   primary: "#39c9bb",
-  accent: "#8e0072"
+  accent: "#c95a39"
 };
 
 CombinedDefaultTheme.colors = {
   ...CombinedDefaultTheme.colors,
   background: "#f9f1f1",
   primary: "#5b2c97",
-  accent: "#CC5500"
+  accent: "#6b9e34"
 };
-
-console.log(CombinedDarkTheme);
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -40,7 +38,7 @@ const App = () => {
 
   return (
     <PaperProvider theme={isDarkMode ? CombinedDarkTheme : CombinedDefaultTheme}>
-      <TitleBar titleText={appBarTitle} />
+      <TitleBar titleText={appBarTitle} changeTheme={setIsDarkMode} />
       <NavigationContainer theme={isDarkMode ? CombinedDarkTheme : CombinedDefaultTheme}>
         <TabNavigation getPageName={setAppBarTitle} />
       </NavigationContainer>
