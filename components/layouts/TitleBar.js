@@ -4,8 +4,8 @@ import { Appbar, useTheme, Switch } from 'react-native-paper';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { vw, vh } from 'react-native-expo-viewport-units';
 
-const TitleBar = ({ titleText }) => {
-    const { colors } = useTheme();
+const TitleBar = ({ titleText, changeTheme }) => {
+    const { colors, dark } = useTheme();
     const menuIcon = ({color, size}) => {
         return <MaterialIcons name="menu" size={size} color={color} />
     }
@@ -29,15 +29,19 @@ const TitleBar = ({ titleText }) => {
         }
     });
 
+    const switchChanged = () => {
+        changeTheme(!dark);
+    }
+
     return (        
         <View>
             <Appbar.Header style={styles.appBar}> 
                 <Appbar.Action style={styles.menuIcon} icon={menuIcon} />
                 <Appbar.Content titleStyle={styles.appBarTitle} title={titleText} />
                 <View style={styles.switchContainer}>
-                    <Ionicons name="sunny" size={16} color="black" />
-                    <Switch style={styles.themeSwitch} />
-                    <Ionicons name="moon" size={16} color="black" />
+                    <Ionicons name="sunny" size={16} color={colors.background} />
+                    <Switch style={styles.themeSwitch} value={dark} onValueChange={switchChanged} color={colors.background} />
+                    <Ionicons name="moon" size={16} color={colors.background} />
                 </View>
             </Appbar.Header>
         </View>
