@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Alert, View, Linking, ToastAndroid } from 'react-native';
-import { useTheme, Text, TextInput, Button } from 'react-native-paper';
+import { useTheme, Text, TextInput, Button, Title } from 'react-native-paper';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Clipboard from 'expo-clipboard';
 import { vh, vw } from 'react-native-expo-viewport-units';
+import { color } from 'react-native-reanimated';
 
 const QRScanner = () => {
   const { colors } = useTheme();
@@ -20,14 +21,19 @@ const QRScanner = () => {
     },
     titleText: {
       color: colors.text,
-      textAlign: 'center'
+      textAlign: 'center',
+      fontSize: vw(3.5),
+      paddingHorizontal: vw(10)
     },
     scannerContainer: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      width: "100%",
-      maxHeight: vh(55),
+      width: vw(100),
+      maxHeight: vh(50),
+      backgroundColor: 'red',
+      borderColor: colors.primary,
+      borderWidth: 5
     },
     infoContainer: {
       flex: 0,
@@ -84,18 +90,18 @@ const QRScanner = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={styles.titleText}>
-          This is a QR code scanner. QR codes can be a unique way to share a link to a website or some other forms of content.
+      <View>
+        <Title style={styles.titleText}>
+          QR codes can be used to share content.{"\n"}
           (Requires camera access)
-        </Text>
+        </Title>
       </View>
       
       <View style={styles.scannerContainer}>
         <BarCodeScanner
           onBarCodeScanned={(hasScan) ? undefined : handleScan}
           barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
-          style={StyleSheet.absoluteFillObject}
+          style={[StyleSheet.absoluteFillObject]}
         />
       </View>
 

@@ -21,7 +21,7 @@ const tabIcons = {
 
 const TabNavigation = ({ getPageName }) => {
   return (
-    <Tab.Navigator >
+    <Tab.Navigator backBehavior="none" tabBarOptions={{keyboardHidesTabBar: true}}>
         <Tab.Screen name="Home" component={Home} options={{tabBarIcon: tabIcons.HomeIcon}} listeners={{tabPress: () => {getPageName("Home")}}} />
         <Tab.Screen name="QR Scanner" component={QRScanner} options={{tabBarIcon: tabIcons.QRIcon}} listeners={{tabPress: () => {getPageName("QR Scanner")}}} />
         <Tab.Screen name="Notifications" component={PushNotifications} options={{tabBarIcon: tabIcons.NotificationIcon}} listeners={{tabPress: () => {getPageName("Push Notifications")}}} />
